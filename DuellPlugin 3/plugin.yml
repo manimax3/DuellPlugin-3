@@ -1,0 +1,9 @@
+name: DuellPlugin
+main: de.manimax3.main.Main
+version: 3.0
+description: DuellPlugin
+
+commands:
+   duell:
+     description: Fordert zum Duell heraus
+     usage: /duell <player>
