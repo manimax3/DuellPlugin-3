@@ -5,6 +5,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import de.manimax3.listener.DeathListener;
+import de.manimax3.listener.DisconnectListener;
 
 public class Main extends JavaPlugin 
 {
@@ -18,17 +19,20 @@ public class Main extends JavaPlugin
 		this.getCommand("duell").setExecutor(cmdmgr);
 		
 		pm.registerEvents(new DeathListener(), this);
+		pm.registerEvents(new DisconnectListener(), this);
+		
+		ConfigManager.getInstance().setup(this);
 		
 		/*
 		 * ToDo:
-		 * 
-		 * - Removing Duell after Disconnect (Listener)
-		 * - No Duells against yourself (easy if Abfrage)
-		 * - Only 1 Duell against same Player
-		 * - Advanced Death Message (Attacking Players without Duell fight with a Player in a Duell)
-		 * - Global Duell Deny (dont get Request Messages)
+		 * - Command /duell stop (or cancel) (Duell will be canceled after a given time when the player dont get attacked) 
+		 * - Help Command
 		 * - ((Config))
 		 */
+	}
+	
+	public void onDisable(){
+		ConfigManager.getInstance().save();
 	}
 	
 

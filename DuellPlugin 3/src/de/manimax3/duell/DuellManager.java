@@ -47,4 +47,9 @@ public class DuellManager {
 		}
 		return false;
 	}
+	public void duellDisconnect(Player p){
+		Duell d = this.getDuell(p);
+		Bukkit.getServer().broadcastMessage(MessageManager.getInstance().rawMsg(MessageType.INFO, "Player " + p.getName() + " disconnected whilst a Duell"));
+		duells.remove(d);
+	}
 }

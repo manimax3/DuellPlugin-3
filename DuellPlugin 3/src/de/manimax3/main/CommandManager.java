@@ -11,6 +11,7 @@ import de.manimax3.cmd.Accept;
 import de.manimax3.cmd.Create;
 import de.manimax3.cmd.Deny;
 import de.manimax3.cmd.DuellCommand;
+import de.manimax3.cmd.Global;
 import de.manimax3.main.MessageManager.MessageType;
 
 public class CommandManager implements CommandExecutor {
@@ -22,6 +23,7 @@ public class CommandManager implements CommandExecutor {
 		cmds.add(new Create());
 		cmds.add(new Accept());
 		cmds.add(new Deny());
+		cmds.add(new Global());
 	}
 	
 	@Override

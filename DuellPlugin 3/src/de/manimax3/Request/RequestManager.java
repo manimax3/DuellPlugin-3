@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.bukkit.entity.Player;
 
 import de.manimax3.duell.DuellManager;
+import de.manimax3.main.ConfigManager;
 import de.manimax3.main.MessageManager;
 import de.manimax3.main.MessageManager.MessageType;
 
@@ -16,10 +17,19 @@ public class RequestManager {
 	
 	private MessageManager msgmgr = MessageManager.getInstance();
 	private DuellManager dlmgr = DuellManager.getInstance();
+	private ConfigManager  cfgmgr = ConfigManager.getInstance();
+	private boolean global;
 	
 	public ArrayList<Request> requests = new ArrayList<Request>();
 	
 	public void createRequest(Player requesting, Player requested){
+		if(!(cfgmgr.get("Duellglobal." + requested.getName()) == null)){
+			if(cfgmgr.get("Duellglobal." + requested.getName()) == "false"){
+				msgmgr.sendMessage(requesting, MessageType.INFO, requested.getName() + " is suppressing Duell requests!");
+				return;
+			}
+		}
+		
 		Request r = new Request(requesting, requested);
 		requests.add(r);
 		this.doRequests(r);

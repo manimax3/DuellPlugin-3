@@ -26,6 +26,16 @@ public class Create extends DuellCommand {
 			MessageManager.getInstance().sendMessage(p, MessageType.BAD, "Could not find Player");
 			return;
 		}
+		if(target.equals(p)){
+			MessageManager.getInstance().sendMessage(p, MessageType.BAD, "You can't create Duell requests against yourself!");
+			return;
+		}
+		if(rqmgr.hasRequest(target)){
+			if(rqmgr.getRequest(target).getRequesting().equals(p)){
+				MessageManager.getInstance().sendMessage(p, MessageType.BAD, "You can't create a Request against the same Player multiple times!");
+				return;
+			}
+		}
 		//Request rq = new Request(p, target);
 		rqmgr.createRequest(p, target);
 		return;
