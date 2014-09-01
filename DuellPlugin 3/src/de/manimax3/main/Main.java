@@ -14,12 +14,14 @@ public class Main extends JavaPlugin
 	public void onEnable(){
 		pm = Bukkit.getServer().getPluginManager();
 		cmdmgr = new CommandManager();
-		
+
 		this.getCommand("duell").setExecutor(cmdmgr);
 		
 		pm.registerEvents(new DeathListener(), this);
 		
 		/*
+		 * ToDo:
+		 * 
 		 * - Removing Duell after Disconnect (Listener)
 		 * - No Duells against yourself (easy if Abfrage)
 		 * - Only 1 Duell against same Player
